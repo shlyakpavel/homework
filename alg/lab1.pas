@@ -6,7 +6,7 @@ Const  lmax = 200;
 
 Type  mas = array[1..lmax] Of real;
 
-Var 
+Var
   n, i, first_negative, curr_min, size_new: integer;
   x, h, a: real;
   r: mas;
@@ -21,7 +21,7 @@ Begin
   Readln(x,h,a);
   For i := 1 To n Do
     r[i] := 6 * cos(a * x + i * h);
-  Writeln('Array R of ', n, ' elements²:');
+  Writeln('Array R of ', n, ' elements:');
   For i := 1 To n Do
     Write(r[i]:8:3, ' ');
   Writeln;
@@ -68,5 +68,10 @@ Begin
         x := x+r[i];
       x := x/(curr_min-first_negative-1);
       Writeln('Average is ',x:8:5);
-    End;
+    End
+  Else
+    Writeln(
+
+'First negative element position is equal or greater than global minimum one. Thats why no solution here'
+    );
 End.
