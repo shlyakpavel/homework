@@ -1,5 +1,6 @@
+{*** Program made by Pavel Shlyak. MIEM HSE 2017. All rights reserved. ***}
 
-Program Project1;
+Program Laboratory_project1;
 
 Const  lmax = 200;
 
@@ -11,7 +12,6 @@ Var
   r: mas;
 Begin
   Writeln('Laboratory work no. 1');
-  Writeln('Ex. 1');
   {The task number one}
   Repeat
     Write('Enter array length from 1 to ', lmax, ':');
@@ -25,7 +25,6 @@ Begin
   For i := 1 To n Do
     Write(r[i]:8:3, ' ');
   Writeln;
-  Writeln('Ex. 2');
   curr_min := 1;
   For i := 1 To n Do
     Begin
@@ -34,8 +33,7 @@ Begin
           curr_min := i
         End;
     End;
-  writeln('Current minimum: ', curr_min);
-  Writeln('Forming a new array');
+  Writeln('Minimum is on ', curr_min,' position in the array. New array is');
   size_new := curr_min;
   For i:=curr_min To n Do
     Begin
@@ -59,18 +57,16 @@ Begin
     End;
   writeln();
   x := 0;
-  Writeln('Ex. 3');
-
   {Attempt to find the first negative value}
   first_negative := 0;
   Repeat
     first_negative := first_negative+1;
   Until r[first_negative] < 0 ;
-
-  For i:=(first_negative+1) To (curr_min-1) Do
-    x := x+r[i];
-  Writeln('sum is ',x);
-  x := x/(curr_min-first_negative-1);
-  Writeln('Average is ',x:8:5, 'first negative is', first_negative);
-
+  If (curr_min-first_negative > 1) Then
+    Begin
+      For i:=(first_negative+1) To (curr_min-1) Do
+        x := x+r[i];
+      x := x/(curr_min-first_negative-1);
+      Writeln('Average is ',x:8:5);
+    End;
 End.
