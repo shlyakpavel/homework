@@ -29,10 +29,8 @@ Begin
   {Задание 2}
   curr_min := 1;
   For i := 1 To n Do
-    Begin
-      If ( r[i] < r[curr_min] ) Then
-        curr_min := i
-    End;
+    If ( r[i] < r[curr_min] ) Then
+      curr_min := i;
   Write('Минимум находится в ', curr_min,' позиции массива. ');
   size_new := curr_min;
   For i:=curr_min To n Do
@@ -48,16 +46,13 @@ Begin
     Begin
       Writeln('Массив после удаления элементов:');
       For i:= 1 To size_new Do
-        Begin
-          Write(r[i]:8:3,' ');
-        End;
+        Write(r[i]:8:3,' ');
     End
   Else
-    Begin
-      Writeln(
+    Writeln(
+
 'Нет положительных значений после первого глобального минимума. Ничего не удалено.'
-      );
-    End;
+    );
   writeln();
   {Задание 3}
   x := 0;
@@ -75,6 +70,7 @@ Begin
     End
   Else
     Writeln(
+
 
 'Порядковый номер первого отрицательного элемента массива более или равен порядковому номеру первого минимума. В связи с этим решений нет.'
     );
