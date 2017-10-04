@@ -11,20 +11,21 @@ Var
   x, h, a: real;
   r: mas;
 Begin
-  Writeln('Laboratory work no. 1');
-  {The task number one}
+  Writeln('Лабораторная работа 1');
+  {Задание 1}
   Repeat
-    Write('Enter array length from 1 to ', lmax, ':');
+    Writeln('Введите количество элементов массива от 1 до ', lmax, ':');
     readln(n)
   Until (n > 0) And (n <= lmax);
-  Writeln('Enter x, h, a:');
+  Writeln('Введите x, h, a:');
   Readln(x,h,a);
   For i := 1 To n Do
     r[i] := 6 * cos(a * x + i * h);
-  Writeln('Array R of ', n, ' elements:');
+  Writeln('Массив R из ', n, ' элементов:');
   For i := 1 To n Do
     Write(r[i]:8:3, ' ');
   Writeln;
+  {Задание 2}
   curr_min := 1;
   For i := 1 To n Do
     Begin
@@ -33,7 +34,7 @@ Begin
           curr_min := i
         End;
     End;
-  Writeln('Minimum is on ', curr_min,' position in the array. New array is');
+  Write('Минимум находится в ', curr_min,' позиции массива. ');
   size_new := curr_min;
   For i:=curr_min To n Do
     Begin
@@ -46,6 +47,7 @@ Begin
   size_new := size_new-1;
   If (size_new <> n) Then
     Begin
+      Writeln('Массив после удаления элементов:');
       For i:= 1 To size_new Do
         Begin
           Write(r[i]:8:3,' ');
@@ -53,11 +55,12 @@ Begin
     End
   Else
     Begin
-      Writeln('No positive elements after the first global minimum. Nothing to delete');
+      Writeln('Нет положительных значений после первого глобального минимума. Ничего не удалено.');
     End;
   writeln();
+  {Задание 3}
   x := 0;
-  {Attempt to find the first negative value}
+  {Попытка найти отрицательное значение}
   first_negative := 0;
   Repeat
     first_negative := first_negative+1;
@@ -71,7 +74,6 @@ Begin
     End
   Else
     Writeln(
-
-'First negative element position is equal or greater than global minimum one. Thats why no solution here'
+'Порядковый номер первого отрицательного элемента массива более или равен порядковому номеру первого минимума. В связи с этим решений нет.'
     );
 End.
