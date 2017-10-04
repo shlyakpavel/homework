@@ -6,7 +6,7 @@ Const  lmax = 200;
 
 Type  mas = array[1..lmax] Of real;
 
-Var
+Var 
   n, i, first_negative, curr_min, size_new: integer;
   x, h, a: real;
   r: mas;
@@ -14,7 +14,8 @@ Begin
   Writeln('Лабораторная работа 1');
   {Задание 1}
   Repeat
-    Writeln('Введите количество элементов массива от 1 до ', lmax, ':');
+    Writeln('Введите количество элементов массива от 1 до ',
+            lmax, ':');
     readln(n)
   Until (n > 0) And (n <= lmax);
   Writeln('Введите x, h, a:');
@@ -30,9 +31,7 @@ Begin
   For i := 1 To n Do
     Begin
       If ( r[i] < r[curr_min] ) Then
-        Begin
-          curr_min := i
-        End;
+        curr_min := i
     End;
   Write('Минимум находится в ', curr_min,' позиции массива. ');
   size_new := curr_min;
@@ -55,7 +54,9 @@ Begin
     End
   Else
     Begin
-      Writeln('Нет положительных значений после первого глобального минимума. Ничего не удалено.');
+      Writeln(
+'Нет положительных значений после первого глобального минимума. Ничего не удалено.'
+      );
     End;
   writeln();
   {Задание 3}
@@ -74,6 +75,7 @@ Begin
     End
   Else
     Writeln(
+
 'Порядковый номер первого отрицательного элемента массива более или равен порядковому номеру первого минимума. В связи с этим решений нет.'
     );
 End.
