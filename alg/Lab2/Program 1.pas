@@ -90,12 +90,14 @@ Begin {this shit}
         End;
   {Зануление максимума при соответствии}
       If Not hasElement(Z[i, maxnum], X, k) Then
+      Begin
         Z[i, maxnum] := 0;
-      hasElement := true;
+		hasResult := true;
+      End;
     End;
  {Конец вычисления}
   If hasResult Then
-    Writeln('Матрица Z после выполнения преобразований:');
+    Writeln('Матрица Z после выполнения преобразований:')
   Else
     Writeln('Преобразований не выполнено. Исходная матрица:'
     );
