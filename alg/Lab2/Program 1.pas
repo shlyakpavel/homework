@@ -11,6 +11,7 @@ Type
   mas = array [1..kmax] Of Integer;
 
 Var 
+  hasResult: boolean;
   Z: matrix;
   X: mas;
   n, m, k, i, e, maxnum: integer;
@@ -60,8 +61,13 @@ Begin
 End;
 
 Begin {this shit}
-  Writeln('Введите n, m и k');
-  Readln(n,m, k);
+  {Блок инициализации переменных}
+  hasResult:=false;
+  Writeln('Лабораторная работа 2. Программа 1');
+  Repeat
+  Writeln('Введите n, m и k. Они не должны превосходить ',nmax,', ',mmax,' и ',kmax,' соответственно');
+  Readln(n, m, k)
+  Until (n>0) And (m>0) And (k>0) And (n<nmax) And (m<mmax) And (k<kmax);
   Writeln('Введите элементы матрицы Z построчно');
   ReadMatrix(n,m,Z);
   Writeln('А теперь введите элементы массива X');
@@ -83,8 +89,12 @@ Begin {this shit}
   {Зануление максимума при соответствии}
       If Not hasElement(Z[i, maxnum], X, k) Then
         Z[i, maxnum] := 0;
+        hasElement := true;
     End;
  {Конец вычисления}
-  Writeln('Матрица Z после выполнения преобразований');
+  if hasResult then
+	Writeln('Матрица Z после выполнения преобразований:');
+  else
+	Writeln('Преобразований не выполнено. Исходная матрица:');
   writeMatrix(n,m,Z);
 End. {up with this shit}
