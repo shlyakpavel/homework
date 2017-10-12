@@ -14,7 +14,7 @@ Var
   hasResult: boolean;
   Z: matrix;
   X: mas;
-  n, m, k, i, e, maxnum: integer;
+  n, m, k, i, e, maxnum: Integer;
 
 Procedure ReadArray(k: integer; Var X: mas);
 
@@ -25,6 +25,7 @@ Begin
 End;
 
 Procedure ReadMatrix(n: integer; m: integer; Var Z: matrix);
+
 
 {*Эта функция не меняет n и m. Но с пространставми имён надо работать ОСТОРОЖНО*}
 
@@ -62,11 +63,12 @@ End;
 
 Begin {this shit}
   {Блок инициализации переменных}
-  hasResult:=false;
+  hasResult := false;
   Writeln('Лабораторная работа 2. Программа 1');
   Repeat
-  Writeln('Введите n, m и k. Они не должны превосходить ',nmax,', ',mmax,' и ',kmax,' соответственно');
-  Readln(n, m, k)
+    Writeln('Введите n, m и k. Они не должны превосходить ',nmax,', '
+            ,mmax,' и ',kmax,' соответственно');
+    Readln(n, m, k)
   Until (n>0) And (m>0) And (k>0) And (n<nmax) And (m<mmax) And (k<kmax);
   Writeln('Введите элементы матрицы Z построчно');
   ReadMatrix(n,m,Z);
@@ -89,12 +91,13 @@ Begin {this shit}
   {Зануление максимума при соответствии}
       If Not hasElement(Z[i, maxnum], X, k) Then
         Z[i, maxnum] := 0;
-        hasElement := true;
+      hasElement := true;
     End;
  {Конец вычисления}
-  if hasResult then
-	Writeln('Матрица Z после выполнения преобразований:');
-  else
-	Writeln('Преобразований не выполнено. Исходная матрица:');
+  If hasResult Then
+    Writeln('Матрица Z после выполнения преобразований:');
+  Else
+    Writeln('Преобразований не выполнено. Исходная матрица:'
+    );
   writeMatrix(n,m,Z);
 End. {up with this shit}
