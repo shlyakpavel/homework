@@ -3,17 +3,17 @@
 Program Coursera;
 
 Var 
-  curr: integer;
-  a, b: real;
-  sum, ex, c: double;
+  curr: Smallint;
+  a, b: Real;
+  sum, ex, c, diff: Double;
 
-Procedure odd(x: real; n: integer; Var z: double);
+Procedure odd(x: Real; n: Integer; Var z: Double);
 Begin
   z := (2*n+1);
   z := 1/(z*exp(z*ln(x)));
 End;
 
-Procedure exact(x: real; n: integer; Var z: double);
+Procedure exact(x: Real; Var z: Double);
 Begin
   z := 0.5*ln((x+1)/(x-1));
 End;
@@ -24,8 +24,7 @@ Begin
   While ( a<=1 ) Or ( b<=0 ) Do
     Begin
       Writeln(
-
-'Юзер, ты тупой. количество сложений - положительное число! Повтори весь ввод'
+'Юзер, ты тупой. точность вычислений - положительное число! А x должен превышать единицу! Повтори весь ввод'
       );
       Readln(a,b);
     End;
@@ -37,10 +36,10 @@ Begin
     sum := sum + c;
     curr := curr + 1;
   Until (c<=b);
-  curr := curr-1;
-  exact(a, curr, ex);
+  exact(a, ex);
+  diff:= abs(ex - sum);
   Writeln('Частичная сумма ряда с заданной точностью: ', sum,
           '. Получена с ', curr, ' интерации.');
   Writeln('Полная сумма ряда:', ex);
-  Writeln('Разность: ',ex-sum)
+  Writeln('Они различаются на: ',diff)
 End.
