@@ -4,16 +4,15 @@ Program Coursera;
 
 Var 
   curr: Smallint;
-  a, b: Real;
-  sum, ex, c, diff: Double;
+  a, b, sum, ex, c, diff: Real;
 
-Procedure odd(x: Real; n: Integer; Var z: Double);
+Procedure odd(x: Real; n: Integer; Var z: Real);
 Begin
   z := (2*n+1);
   z := 1/(z*exp(z*ln(x)));
 End;
 
-Procedure exact(x: Real; Var z: Double);
+Procedure exact(x: Real; Var z: Real);
 Begin
   z := 0.5*ln((x+1)/(x-1));
 End;
