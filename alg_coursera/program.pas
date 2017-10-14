@@ -6,13 +6,13 @@ Var
   curr: Smallint;
   a, b, sum, ex, c, diff: Real;
 
-Procedure odd(x: Real; n: Integer; Var z: Real);
+Procedure odd(x: Real; n: Integer; Var z: Real); {* Процедура нахождения энного члена ряда *}
 Begin
   z := (2*n+1);
   z := 1/(z*exp(z*ln(x)));
 End;
 
-Procedure exact(x: Real; Var z: Real);
+Procedure exact(x: Real; Var z: Real); {* Процедура для нахождения полной суммы ряда (предела) *}
 Begin
   z := 0.5*ln((x+1)/(x-1));
 End;
@@ -35,10 +35,11 @@ Begin
     sum := sum + c;
     curr := curr + 1;
   Until (c<=b);
+  {* Найдём полную сумму *}
   exact(a, ex);
   diff:= abs(ex - sum);
   Writeln('Частичная сумма ряда с заданной точностью: ', sum,
-          '. Получена с ', curr, ' интерации.');
+          '. Получена с ', curr, ' итерации.');
   Writeln('Полная сумма ряда:', ex);
   Writeln('Они различаются на: ',diff)
 End.
