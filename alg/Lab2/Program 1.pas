@@ -23,7 +23,6 @@ Begin
 End;
 
 Procedure ReadMatrix(n: integer; m: integer; Var Z: matrix);
-{*Эта функция не меняет n и m. Но с пространставми имён надо работать ОСТОРОЖНО*}
 Var i,j: integer;
 Begin
   For i:=1 To n Do
@@ -77,12 +76,8 @@ Begin
       maxnum := 0;
   {Поиск максимума}
       For e:=1 To n Do
-        Begin
-          If abs(Z[i,e]) > abs(Z[i, maxnum]) Then
-            Begin
-              maxnum := e;
-            End;
-        End;
+        If abs(Z[i,e]) > abs(Z[i, maxnum]) Then
+          maxnum := e;
   {Зануление максимума при соответствии}
       If Not hasElement(Z[i, maxnum], X, k) Then
         Begin
