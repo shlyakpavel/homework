@@ -2,13 +2,13 @@ Program Laboratory1;
 
 {Сформировать новый массив, содержащий суммы цифр каждого элемента исходного массива.}
 
-Const 
+Const
   kmax = 200;
 
-Type 
+Type
   mas = array [1..kmax] Of Integer;
 
-Var 
+Var
   X, Res: mas;
   k, c_num, sum: Integer;
 
@@ -38,7 +38,6 @@ Writeln('Лабораторная работа 2. Программа 2');
   While (k<=0) Or (k>kmax) Do
     Begin
       Writeln(
-
 'Юзер, ты тупой. Массив ну никак не может быть пустым, иметь отрицательное значение или, ещё хуже, превышать '
               ,kmax);
       Readln(k);
