@@ -5,7 +5,7 @@ Const lmax = 20;
 Type mass = array [1..lmax] Of real;
 
 Var a, d, b: mass;
-  k, j, i: integer;
+  k, j, i, max: integer;
   c: real;
 Begin
   {ввод длины массива}
@@ -28,20 +28,17 @@ Begin
    {Задание 1}
   writeln('.......Задание 1.......');
   j := 0;
-  c := 0;
-  // Число i у нас не менее 1, как следстве 3i > 0 для всех i
+  max := 0;
   For i:=1 To k Do
     Begin
-      If (b[i]>=(3*i)) And (b[i] > c) Then
-        c := b[i]
+      If (b[i]>=(3*i)) And (b[i] > b[max]) Then
+        max := i;
     End;
-  If c>0 Then
-    writeln('Максимум массива B при b[i]>=3i: ', c:10:5)
+  If max>0 Then
+    writeln('Максимум массива B при b[i]>=3i: ', b[max]:10:5,
+            '  Он достигается на ',max,' элементе.')
   Else
-    writeln(
-
-'Максимума нет, так как ни один элемент не удовлетворяет условиям'
-    );
+    writeln('Максимума нет, так как ни один элемент не удовлетворяет условиям');
   writeln;
    {Задание 2}
   writeln('.......Задание 2.......');
@@ -54,7 +51,7 @@ Begin
         d[j] := -B[i]
       End;
   If j=0 Then
-    writeln('нет массива D')
+    writeln('Нет массива D. Нет смысла искать массив A')
   Else
     Begin
    {вывод(B[1:n])}
@@ -62,13 +59,13 @@ Begin
       For i:=1 To j Do
         write(d[i]:10:5);
       writeln;
+      writeln('.......Задание 3.......');
+      writeln('Введите число x1');
+      readln(c);
+      writeln('Массив a');
     End;
   writeln;
    {Задание 3}
-  writeln('.......Задание 3.......');
-  writeln('Введите число x1');
-  readln(c);
-  writeln('Массив a');
   For i:=1 To j Do
     Begin
       If d[i]>c Then
