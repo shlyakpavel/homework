@@ -20,7 +20,7 @@ Begin
     {вывод элементов массива}
   writeln;
   writeln('Введено ',k ,' элементов массива');
-  For i:=1 To k
+  For i:=1 To k 
     Do
     write(b[i]:10:5);
   writeln;
@@ -39,6 +39,7 @@ Begin
     writeln('Максимум массива B при b[i]>=3i: ', c:10:5)
   Else
     writeln(
+
 'Максимума нет, так как ни один элемент не удовлетворяет условиям'
     );
   writeln;
@@ -50,16 +51,16 @@ Begin
     If b[i]<=b[i-1] Then
       Begin
         j := j+1;
-        D[j] := -B[i]
+        d[j] := -B[i]
       End;
   If j=0 Then
-    writeln('нет массива B')
+    writeln('нет массива D')
   Else
     Begin
    {вывод(B[1:n])}
-      writeln('Получен массив B из ',j ,' элементов');
+      writeln('Получен массив D из ',j ,' элементов');
       For i:=1 To j Do
-        write(b[i]:10:5);
+        write(d[i]:10:5);
       writeln;
     End;
   writeln;
@@ -70,10 +71,18 @@ Begin
   writeln('Массив a');
   For i:=1 To j Do
     Begin
-      If b[i]>c Then
-        a[i] := sqrt(b[i])
+      If d[i]>c Then
+        If d[i] < 0 Then
+          writeln('Корня нет')
       Else
-        a[i] := power(b[i],2);
-      write(a[i]:10:5,'  ');
+        Begin
+          a[i] := sqrt(d[i]);
+          writeln(a[i]:10:5,'  ');
+        End
+      Else
+        Begin
+          a[i] := power(d[i],2);
+          writeln(a[i]:10:5,'  ');
+        End;
     End;
 End.
