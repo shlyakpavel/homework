@@ -1,14 +1,15 @@
 Program Week5;
-Const 
-  nmax = 200;
+Const
+  nmax = 100;
   k = 3;
 
-Type 
+Type
   matrix = array[1..nmax,1..nmax] Of Integer;
 
-Var 
+Var
   Z: matrix;
   s_num, n, i, j, c: integer;
+  change_status: boolean;
 
 Procedure ReadSquareMatrix(n: integer; Var Z: matrix);
 Var i,j: integer;
@@ -30,12 +31,12 @@ Begin
 End;
 
 Begin
+  change_status := false; {Флаг, что в ходе сортировки матрица претерпела изменения}
   Repeat
-    writeln(
-'Введите количество столбцов и номер строки. Они не должны превосходить '
+    writeln('Введите количество столбцов и номер строки. Они не должны превосходить '
             ,nmax,' и введённый n соответственно');
     Readln(n,  s_num)
-  Until (n>0) And (n<nmax) And (s_num<=n);
+  Until (n>0) and (n<=nmax) and (s_num<=n);
   writeln('Введите элементы матрицы Z построчно');
   ReadSquareMatrix(n,Z);
   writeln('Введена квадратная матрица:');
@@ -44,18 +45,21 @@ Begin
     For j:=i+1 To n Do {с чем сравниваем}
       If Z[s_num, i]<Z[s_num,j] Then
         Begin
+          change_status := true;
           C := Z[s_num,i];
           Z[s_num,i] := Z[s_num, j];
           Z[s_num,j] := C; {перестановка}
         End;
   {вывод(Z[s_num,1:k])}
-  writeln('Найдено ',k ,' максимальных элемента ', s_num, ' строки'
-  );
+  writeln('Найдено ',k ,' максимальных элемента ', s_num, ' строки');
   For i:= 1 To k  Do
     write(Z[s_num,i]:5);
-  writeln;
-  writeln('Матрица после преобразований:');
-  WriteSquareMatrix(n,Z);
+  writeln; {переход на следующую строку экрана}
+  If change_status=true Then {Нет смысла выводить матрицу повторно, если она не была изменена}
+    Begin
+      writeln('Матрица после преобразований:');
+      WriteSquareMatrix(n,Z);
+    End;
   writeln('Элементы под главной диагональю');
   C := 0;
   For i:=2 To n Do
