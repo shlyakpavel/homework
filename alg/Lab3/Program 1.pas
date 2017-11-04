@@ -1,4 +1,4 @@
-Program Lab11;
+Program Lab31;
 Const
   fmax = 170;
 
@@ -8,8 +8,8 @@ Var
 
 Procedure ReadSafeInt(Var result: Integer);
 Var
-  safety: String = '0';
-  success: Integer = 0;
+  safety: String;
+  success: Integer;
 Begin
   Repeat
     Readln(safety);
@@ -23,11 +23,11 @@ End;
 Function ProdTree(l, r: Integer) : Real;
 Var m: Integer;
 Begin
-  If (l > r) Then
+  If l > r Then
     ProdTree := 1
-  Else If (l = r) Then
+  Else If l = r Then
          ProdTree := l
-  Else If (r - l) = 1 Then
+  Else If r - l = 1 Then
          ProdTree := l*r
   Else
     Begin
@@ -38,11 +38,11 @@ End;
 
 Function FactTree(n: Integer) : Real;
 Begin
-  If (n < 0) Then
+  If n < 0 Then
     FactTree := 0
-  Else If (n = 0) Then
+  Else If n = 0 Then
          FactTree := 1
-  Else If (n = 1) Or (n = 2) Then
+  Else If (n = 1) or (n = 2) Then
          FactTree := n
   Else
     FactTree := ProdTree(2, n);
@@ -59,10 +59,12 @@ Begin
   Repeat
     writeln('Введите k меньше ', n);
     ReadSafeInt(k);
-  Until (k>=0) And (k<n);
+  Until (k>=0) and (k<n);
+{ All the arithmetics is here }
   fact_n := FactTree(n);
   fact_k := FactTree(k);
   fact_nk := FactTree(n-k);
   res := fact_n/(fact_k*fact_nk);
+{ Output result }
   writeln(res);
 End.
