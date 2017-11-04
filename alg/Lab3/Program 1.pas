@@ -4,7 +4,8 @@ Const
   kmax = 200;
 
 Var
-  n, k, res, fact_n, fact_k, fact_nk: Integer;
+  n, k: Integer;
+  res, fact_n, fact_k, fact_nk: Real;
 
 Procedure ReadSafeInt(Var result: Integer);
 Var
@@ -20,7 +21,7 @@ End;
 { Recursive factorial function.
 * Orignal c++ code can be found on https://habrahabr.ru/post/255761/ }
 
-Function ProdTree(l, r: Integer) : Integer;
+Function ProdTree(l, r: Integer) : Real;
 Var m: Integer;
 Begin
   If (l > r) Then
@@ -36,7 +37,7 @@ Begin
     End;
 End;
 
-Function FactTree(n: Integer) : Integer;
+Function FactTree(n: Integer) : Real;
 Begin
   If (n < 0) Then
     FactTree := 0
@@ -53,9 +54,8 @@ Begin
 { Factorial of a negative value is always a bad idea }
   Repeat
     writeln('Введите n');
-    //Todo: Avoid overflow
     ReadSafeInt(n);
-  Until (n>0);
+  Until (n>0) and (n <=170);
 { k shouldn't be greater than n as we will need factorial of k-n later }
   Repeat
     writeln('Введите k меньше ', n);
@@ -64,6 +64,6 @@ Begin
   fact_n := FactTree(n);
   fact_k := FactTree(k);
   fact_nk := FactTree(n-k);
-  res := Round(fact_n/(fact_k*fact_nk));
+  res := fact_n/(fact_k*fact_nk);
   writeln(res);
 End.
