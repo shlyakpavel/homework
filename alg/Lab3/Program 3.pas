@@ -34,6 +34,7 @@ Var j: Integer;
 Begin
   For j:=1 To k Do
     Write(Res[j]:5);
+  writeln;
 End;
 
 Procedure Fdubl(na: Integer; Var A: mas; Var B:mas);
@@ -72,16 +73,13 @@ Begin
   ReadArray(n, Arr);
   writeln('Вы ввели матрицу');
   WriteArray(n, Arr);
-  Writeln;
   Fdubl(n, Arr, Res);
   writeln('Результат работы первой функции:');
   Writearray(n, Res);
-  Writeln;
   n:= Cutdubl(n, Arr, Res);
   writeln('Результат работы второй функции:');
   if n>1 then
     Writearray(n, Arr)
   else
     Writeln('Array has no dublicate entries');
-  Writeln;
 End.
