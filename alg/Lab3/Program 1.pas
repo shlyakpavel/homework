@@ -1,7 +1,6 @@
 Program Lab11;
 Const
-  //Todo: Avoid overflow
-  kmax = 200;
+  fmax = 170;
 
 Var
   n, k: Integer;
@@ -55,7 +54,7 @@ Begin
   Repeat
     writeln('Введите n');
     ReadSafeInt(n);
-  Until (n>0) and (n <=170);
+  Until (n>0) and (n <= fmax);
 { k shouldn't be greater than n as we will need factorial of k-n later }
   Repeat
     writeln('Введите k меньше ', n);
