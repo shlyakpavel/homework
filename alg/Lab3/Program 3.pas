@@ -51,13 +51,13 @@ End;
 Function Cutdubl(na: Integer; Var A:mas; Var Dubl:mas) : Integer;
 Var i: Integer;
 Begin
-  result:=1;
+  result:=0;
   For i:=1 to na do
     Begin
       if Dubl[i]>1 then
         begin
           Inc(result);
-          A[result+1]:=A[i];
+          A[result]:=A[i];
         end;
     End;
 End;
@@ -78,6 +78,7 @@ Begin
   Writearray(n, Res);
   Writeln;
   n:= Cutdubl(n, Arr, Res);
+  writeln('Результат работы второй функции:');
   if n>1 then
     Writearray(n, Arr)
   else
