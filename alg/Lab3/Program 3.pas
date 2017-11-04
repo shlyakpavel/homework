@@ -1,6 +1,6 @@
 {$MODE DELPHI}
 
-Program Lab31;
+Program Lab33;
 Const 
   kmax = 200;
 
