@@ -65,7 +65,7 @@ End;
 
 Begin
   Repeat
-    writeln('Введите количество столбцов от 1 '
+    writeln('Введите количество элементов от 1 до '
             ,kmax);
     ReadSafeInt(n);
   Until (n>1) And (n<=kmax);
