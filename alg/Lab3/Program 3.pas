@@ -11,10 +11,10 @@ Var
   Arr, Res: mas;
   n: Integer;
 
-Function ReadSafeInt() : Integer;
-Var 
-  safety: String = '0';
-  success: Integer = 0;
+Procedure ReadSafeInt(Var result: Integer);
+Var
+  safety: String;
+  success: Integer;
 Begin
   Repeat
     Readln(safety);
@@ -26,7 +26,7 @@ Procedure ReadArray(k: integer; Var X: mas);
 Var j: Integer;
 Begin
   For j:=1 To k Do
-    X[j] := ReadSafeInt();
+    ReadSafeInt(X[j]);
 End;
 
 Procedure WriteArray(k: integer; Var Res: mas);
@@ -67,7 +67,7 @@ Begin
   Repeat
     writeln('Введите количество столбцов от 1 '
             ,kmax);
-    n := ReadSafeInt();
+    ReadSafeInt(n);
   Until (n>1) And (n<=kmax);
   writeln('Введите элементы матрицы Z построчно');
   ReadArray(n, Arr);
