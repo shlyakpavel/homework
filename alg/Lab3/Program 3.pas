@@ -69,9 +69,9 @@ Begin
             ,kmax);
     ReadSafeInt(n);
   Until (n>1) And (n<=kmax);
-  writeln('Введите элементы матрицы Z построчно');
+  writeln('Введите элементы массива построчно');
   ReadArray(n, Arr);
-  writeln('Вы ввели матрицу');
+  writeln('Вы ввели массив:');
   WriteArray(n, Arr);
   Fdubl(n, Arr, Res);
   writeln('Результат работы первой функции:');
