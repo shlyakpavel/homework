@@ -74,7 +74,7 @@ End;
 
 Begin
   Repeat
-    writeln('Введите количество столбцов от 1 '
+    writeln('Введите количество столбцов от 1 до '
             ,nmax);
     n := ReadSafeInt();
   Until (n>1) And (n<=nmax);
