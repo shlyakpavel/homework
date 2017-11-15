@@ -54,12 +54,12 @@ Begin
   Repeat
     writeln('Введите n');
     ReadSafeInt(n);
-  Until (n>0) and (n <= fmax);
+  Until (n>=0) and (n <= fmax);
 { k shouldn't be greater than n as we will need factorial of k-n later }
   Repeat
     writeln('Введите k меньше ', n);
     ReadSafeInt(k);
-  Until (k>=0) and (k<n);
+  Until (k>=0) and (k<=n);
 { All the arithmetics is here }
   fact_n := FactTree(n);
   fact_k := FactTree(k);
