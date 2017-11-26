@@ -27,16 +27,16 @@ Begin
     readln(str_length);
     Val (str_length, n, err);
   Until (n>0) And (err=0);
-  SetLength(T1,n);
-  writeln('Enter ',length(T1),' words one by one');
-  For n:=1 To length(T1) Do
+  SetLength(T1,n+1);
+  writeln('Enter ',length(T1)-1,' words one by one');
+  For n:=1 To length(T1)-1 Do
     readln(T1[n]);
 End;
 
 Procedure process(Var T1: Text);
 Var c: Integer;
 Begin
-  For c:=1 To length(T1) Do
+  For c:=1 To length(T1)-1 Do
     If isPalindrome(T1[c]) Then
       writeln(T1[c],' is a Palindrome')
     Else writeln(T1[c],' is not a Palindrome');
