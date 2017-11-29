@@ -1,4 +1,4 @@
-Program example1;
+Program Lab4;
 
 Const 
   string_num = 10;
@@ -16,7 +16,6 @@ Begin
 End;
 
 Function hasnumsandbrackets(Var str: String) : Boolean;
-
 Var 
   i: Integer;
   hasnum, hasbrackets: Boolean;
@@ -32,7 +31,6 @@ Begin
 End;
 
 Procedure substr(Var T1, T2: StrList; n1 : Integer; Var n2: Integer);
-
 Var j1: Integer;
 Begin
   For i:=1 To n1 Do
@@ -61,6 +59,21 @@ Begin
     End;
 End;
 
+Function process(str: String) : String;
+Var i, num, err: Integer;
+{Num не используется. Но он необходим для val. Поэтому игнорим предупреждение}
+Begin
+  i := length(str);
+  err := 1;
+  While (i>0) And (err<>0) Do
+    Begin
+      val(str[i],num,err);
+      Dec(i);
+    End;
+  Insert('***',str,i+2);
+  process := str;
+End;
+
 Begin
   writeln('Введите число строк n1 (не более ',string_num,')');
   readln(n1);
@@ -71,15 +84,13 @@ Begin
   substr(T1, T2, n1, n2);
   If n2=0 Then
     {анализ сущестоввания результата для 1 задания}
-    writeln(
-'Нет подстрок. Выполнение всех трёх заданий невозможно'
-    )
+    writeln('Нет подстрок. Выполнение всех трёх заданий невозможно')
   Else
     Begin {вывод результата 1 задания}
       writeln('1. Подстроки');
       For i:=1 To n2 Do
         writeln(T2[i]);
-      writeln('2. Первая подстрока, содержащая цифры и круглые скобки:');
+      writeln('2. Первая подстрока, содержащая цифры и круглые скобки:'      );
       j := 0;
       While (i>0) Do
         Begin;
@@ -90,11 +101,10 @@ Begin
       If j<>0 Then
         writeln(T2[j])
       Else writeln('отсутствует');
-      writeln('3. Вставить три звездочки перед последней цифрой');
+      writeln('3. Вставить три звездочки перед последней цифрой'      );
       {Поиск нужной строки}
-      i := 1;
       While pos(T2[j], T1[i])=0 Do
         Inc(i);
-      writeln('Строка: ', T1[i]);
+      writeln(process(T1[i]));
     End;
 End.
