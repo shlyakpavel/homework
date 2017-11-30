@@ -4,15 +4,21 @@ Var str: String;
 
 Var prevopen: Boolean;
 
-Var i: Integer;
+Var i, start: Integer;
 Begin
   readln(str);
-  For i:=1 To length(str) Do
+  i:=1;
+  while i <= length(str) Do
     Begin
-      If str[i]='(' Then prevopen := true;
+      If str[i]='(' Then
+      begin
+        prevopen := true;
+        start:=i;
+      end;
       If str[i]=')' Then
         Begin
-          If prevopen=true Then writeln('Substring found');
+          If prevopen=true Then writeln('Substring found start at ', start, ' end at ', i);
         End;
+      Inc(i);
     End;
 End.
