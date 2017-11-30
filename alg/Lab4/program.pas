@@ -70,7 +70,7 @@ Begin
       val(str[i],num,err);
       Dec(i);
     End;
-  Insert('***',str,i+2);
+  Insert('***',str,i+1);
   process := str;
 End;
 
@@ -99,12 +99,14 @@ Begin
           Dec(i);
         End;
       If j<>0 Then
-        writeln(T2[j])
+        begin
+          writeln(T2[j]);
+          writeln('3. Вставить три звездочки перед последней цифрой'      );
+	      {Поиск нужной строки}
+          While pos(T2[j], T1[i])=0 Do
+            Inc(i);
+          writeln(process(T1[i]));
+        end
       Else writeln('отсутствует');
-      writeln('3. Вставить три звездочки перед последней цифрой'      );
-      {Поиск нужной строки}
-      While pos(T2[j], T1[i])=0 Do
-        Inc(i);
-      writeln(process(T1[i]));
     End;
 End.
