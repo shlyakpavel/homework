@@ -18,6 +18,7 @@ Begin
       If str[i]=')' Then
         Begin
           If prevopen=true Then writeln('Substring found start at ', start, ' end at ', i);
+          prevopen:=false;
         End;
       Inc(i);
     End;
