@@ -19,7 +19,9 @@ Begin
         Begin
           If prevopen=true Then writeln('Substring found start at ', start, ' end at ', i);
           prevopen:=false;
+          delete(str,start+1,i-start-1);
         End;
       Inc(i);
     End;
+    writeln(str);
 End.
