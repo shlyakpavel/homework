@@ -23,7 +23,7 @@ Begin
         Begin
           If ((s[i] >= 'a') And (s[i] <= 'z')) or ((s[i] >= 'A') And (s[i] <= 'Z')) Then
             For j:=i+1 To length(s) Do
-              If ((s[j] >= 'a') And (s[j] <= 'c')) or ((s[j] >= 'A') And (s[j] <= 'Z')) Then
+              If ((s[j] >= 'a') And (s[j] <= 'z')) or ((s[j] >= 'A') And (s[j] <= 'Z')) Then
                 If s[i]>s[j] Then
                   Begin
                     c := s[i];
