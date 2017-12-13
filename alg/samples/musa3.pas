@@ -21,9 +21,9 @@ Begin
       readln(f1,s);
       For i:=1 To length(s)-1 Do
         Begin
-          If ((s[i] >= 'a') And (s[i] <= 'z')) Then
+          If (s[i] >= 'a') And (s[i] <= 'c') Then
             For j:=i+1 To length(s) Do
-              If ((s[i] >= 'a') And (s[i] <= 'z')) Then
+              If (s[j] >= 'a') And (s[j] <= 'c') Then
                 If s[i]>s[j] Then
                   Begin
                     c := s[i];
