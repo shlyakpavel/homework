@@ -19,6 +19,7 @@ Begin
   While (Not eof(f1)) Do
     Begin
       readln(f1,s);
+      writeln(s);
       For i:=1 To length(s)-1 Do
         Begin
           If ((s[i] >= 'a') And (s[i] <= 'z')) or ((s[i] >= 'A') And (s[i] <= 'Z')) Then
@@ -32,6 +33,7 @@ Begin
                   End;
         End;
       writeln(f2,s);
+      writeln(s)
     End;
   close(f1);
   close(f2);
