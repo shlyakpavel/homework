@@ -1,5 +1,4 @@
 Program Lab4;
-
 Const 
   string_num = 10;
 
@@ -9,6 +8,18 @@ Type
 Var 
   n1, n2, i, j: integer;
   T1, T2: StrList;
+
+{*Addition as an extra task*}
+Procedure insertMINE(addition: String; var data: String; pos: Integer);
+var i: Integer;
+Begin
+  setlength(data,length(data)+length(addition));
+  for i:=length(data) downto pos do
+    data[i]:=data[i-length(addition)];
+  for i:=0 to length(addition)-1 do
+  data[pos+i]:=addition[i+1];
+End;
+{*End of the addition*}
 
 Function matches(Var symbol: char) : Boolean;
 Begin
@@ -70,7 +81,7 @@ Begin
       val(str[i],num,err);
       Dec(i);
     End;
-  Insert('***',str,i+1);
+  InsertMINE('***',str,i+1);
   process := str;
 End;
 
