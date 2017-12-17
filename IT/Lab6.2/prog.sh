@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#Для корректной работы:
+#wget http://phodd.net/gnu-bc/code/logic.bc
+
 read src #чтение открытого текста
 read shifr #чтение закрытого текста
 
