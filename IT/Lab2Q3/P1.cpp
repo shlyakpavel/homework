@@ -4,10 +4,9 @@
  * Вариант 170%45+1=36
  * В заданной целочисленной прямоугольной матрице поменять местами следующие  два элемента:
  * Два первых отрицательных в четных строках.
- * Тест: seq -3 100 | shuf -r | ./Lab2Q3P1
-*/
+ * Тест: seq -3 100 | shuf -r | ./Lab2Q3P1 */
 
-#include <iostream>
+#include <stdio.h>
 
 #define MAXCOLS 45
 #define MAXSTR 25
@@ -63,10 +62,6 @@ void output(int matrix[MAXSTR][MAXCOLS], ushort *cols, ushort *strings){
 
 int main()
 {
-    /* Русская локаль */
-    setlocale(LC_ALL, "RUS");
-    /* Синхронизация с потоком C нам не нужна*/
-    ios::sync_with_stdio(false);
     /* Декларирование и инициализация переменных */
     int matrix[MAXSTR][MAXCOLS];
     ushort  *cols = new ushort(0),
