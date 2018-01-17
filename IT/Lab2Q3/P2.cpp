@@ -29,8 +29,24 @@ void input(int matrix[MAXSTR][MAXCOLS], unsigned short &cols, unsigned short &st
     }
 }
 
-int process(int matrix[MAXSTR][MAXCOLS], unsigned short cols, unsigned short strings){
-    return -2;
+bool process(int matrix[MAXSTR][MAXCOLS], unsigned short cols, unsigned short strings){
+    int first_s = -1, first_c;
+    bool operate = true;
+    for (int s=0; (s < strings) && operate; s+=2){
+        for (int c = 0; (c < cols) && operate; c++){
+            if (matrix[s][c] < 0){
+                if (first_s==-1)
+                    first_s = s, first_c = c;
+                else{
+                    int tmp = matrix[first_s][first_c];
+                    matrix[first_s][first_c] = matrix[s][c];
+                    matrix[s][c]=tmp;
+                    operate=false;
+                }
+            }
+        }
+    }
+    return operate;
 }
 
 void output(int matrix[MAXSTR][MAXCOLS], int cols, int strings){
@@ -55,17 +71,9 @@ int main()
     /* Ввод данных */
     input(matrix, cols, strings);
     /* Вычисления */
-    int ret = process(matrix, cols, strings);
+    bool ret = process(matrix, cols, strings);
     /* Анализ существования результата */
-    switch ( ret ){
-    case -1:
-        printf("Матрица не содержит отрицательных чисел на нечётных строках\n");
-        break;
-    case -2:
-        output(matrix, cols, strings);  //вывод данных
-        break;
-    default:
-        printf("Недостаточно отрицательных чисел\n");
-    }
+    if (ret) cout << "Недостаточно отрицательных чисел" << endl;
+    else output(matrix, cols, strings);
     return 0;
 }
