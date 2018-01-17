@@ -30,20 +30,22 @@ void input(int matrix[MAXSTR][MAXCOLS], ushort *cols, ushort *strings){
 }
 
 int process(int matrix[MAXSTR][MAXCOLS], ushort *cols, ushort *strings){
-    int fn = -1;   //первое отрицательное
+    int fn = -1;   //смещение до первого отрицательного элемента
     for (uint i=0; i < (uint) ((*cols) * (*strings)); i++){
         if ( (i / *cols)%2 )    //если строка чётная
             --i+=*cols;         //то пропустим её
         else
             if (*( *matrix + i) < 0){
                 if (fn >= 0){
-                    /* Замена */
+                    /* Нашли второй отрицательный элемент, меняем местами */
                     int tmp = *( *matrix + fn);
                     *( *matrix + fn) = *( *matrix + i);
                     *( *matrix + i) = tmp;
                     i=(*cols) * (*strings);
+                    /* Результат есть */
                     fn=-2;
                 }
+                /* Нашли первый отрицательный элемент */
                 else fn = i;
             }
     }
@@ -61,6 +63,8 @@ void output(int matrix[MAXSTR][MAXCOLS], ushort *cols, ushort *strings){
 
 int main()
 {
+    /* Русская локаль */
+    setlocale(LC_ALL, "RUS");
     /* Синхронизация с потоком C нам не нужна*/
     ios::sync_with_stdio(false);
     /* Декларирование и инициализация переменных */
