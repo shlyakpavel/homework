@@ -18,7 +18,10 @@ Begin
       If str[i]=')' Then
         Begin
           If prevopen=true Then 
+            Begin
             delete(str,start+1,i-start-1);
+            Dec(i);
+            End;
           prevopen:=false;
         End;
       Inc(i);
