@@ -23,7 +23,6 @@ void input(int matrix[MAXSTR][MAXCOLS], ushort *cols, ushort *strings){
     /* Рассчёт количества элементов в матрице */
     uint els = (*cols) * (*strings);
     printf("Введите матрицу из %d элементов\n", els);
-    int *p = &matrix[0][0];
     //int s, c;
     /*for (s=0; s < *strings; s++){
         for (c=0; c < *cols; c++){
@@ -31,25 +30,34 @@ void input(int matrix[MAXSTR][MAXCOLS], ushort *cols, ushort *strings){
         }
     }*/
     for (uint i=0; i < els; i++)
-        scanf("%d", p + i);
+        scanf("%d", (int*) matrix + i);
 }
 
 int process(int matrix[MAXSTR][MAXCOLS], ushort *cols, ushort *strings){
-    int *p = &matrix[0][0];
+    int     fn = -1;   //первое отрицательное
     for (uint i=0; i < (uint) ((*cols) * (*strings)); i++){
         if ( (i / *cols)%2 )    //если строка чётная
             --i+=*cols;         //то пропустим её
         else
-            printf("%d", *(p + i));
+            if (*( *matrix + i) < 0){
+                if (fn >= 0){
+                    /* Замена */
+                    int tmp = *( *matrix + fn);
+                    *( *matrix + fn) = *( *matrix + i);
+                    *( *matrix + i) = tmp;
+                    i=(*cols) * (*strings);
+                }
+                else fn = i;
+            }
     }
-    return 0;
+    return fn;
 }
 
 
 void output(int matrix[MAXSTR][MAXCOLS], ushort *cols, ushort *strings){
     for (uint i=0; i < (uint) ((*cols) * (*strings)); i++){
         if (! (i%*cols) ) printf("\n");
-        printf("%d ", *(&matrix[0][0]) + i);
+        printf("%d ", *(*matrix + i));
     }
     printf("\n");
 }
@@ -62,9 +70,10 @@ int main()
     int matrix[MAXSTR][MAXCOLS];
     ushort *cols = new ushort,
             *strings = new ushort;
-
     /* Ввод данных */
     input(matrix, cols, strings);
+    output(matrix, cols, strings);
+
     /* Вычисления */
     int ret = process(matrix, cols, strings);
     /* Анализ существования результата */
