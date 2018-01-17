@@ -2,8 +2,8 @@
 These include:
 - IT (previously known as algorithmic computation)
 - Alg (introduction to algorithmic computation)
-- Pascal programs that for laboratory works
-- All my coursera assignments (for educational purposes only!!!)
+  - Pascal programs that for laboratory works
+  - All my coursera assignments (for educational purposes only!!!)
 - History. I didn't upload exam tickets as I didn't get proper permission. Nevertheless, you can find a usefull script to process them.
 - Math, Low, Physics will be also available in the future. Don't ask me when.
 
