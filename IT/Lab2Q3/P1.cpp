@@ -29,7 +29,7 @@ void input(int matrix[MAXSTR][MAXCOLS], ushort *cols, ushort *strings){
 }
 
 int process(int matrix[MAXSTR][MAXCOLS], ushort *cols, ushort *strings){
-    int fn = -1;   //смещение до первого отрицательного элемента
+    short fn = -1;   //смещение до первого отрицательного элемента
     for (uint i=0; i < (uint) ((*cols) * (*strings)); i++){
         if ( (i / *cols)%2 )    //если строка чётная
             --i+=*cols;         //то пропустим её
