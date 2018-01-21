@@ -35,15 +35,15 @@ void find_subs(char *text, unsigned long text_size, char* subs){
 
 int main()
 {
-    //  Initialisation of the global variables
-    char *text, *tmp, *cur;    //Text
+    //  Initialization of the global variables
+    char *text, *tmp, *cur;    //A pointer to the source text, a temporary pointer and a current position pointer
     short EOT=0;
-    unsigned long text_size = 0; //NEVER USE cur - text!!! NEVER!!!!!
+    unsigned long text_size = 0; //NEVER USE cur - text!!! NEVER!!!!! Otherwise you're likely to get allocation errors
     text = (char*) malloc(sizeof(char));
     chk_ptr(text);
 
     //  Input
-    //  Todo: check text_size overflow
+    //  Todo: check for text_size overflow
     for (text_size=0; !EOT && (text_size < INT_MAX); text_size++){
         tmp = realloc(text, (text_size+1) * sizeof(char));
         chk_ptr(tmp);
