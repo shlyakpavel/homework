@@ -75,9 +75,18 @@ void find_subs2(char *src, unsigned long text_size, char *res, int *pos) {
   *(res + res_size) = '\n';
 }
 
-char *srcwithoutrus(int pos) {
-  char *output;
-  output = malloc(1);
+char *srcwithoutrus(char* src, int pos) {
+    char *output;
+    int size = 0;
+    char* pointer=src+pos;
+    output = malloc(sizeof(char)*1000);
+    while (*pointer != '\n'){
+        bool keep = *pointer > ('ÿ') || *pointer < ('à');
+        keep = keep && (*pointer != '¸');
+        if (keep) *(output+size++)=*pointer;
+        pointer++;
+    }
+    *(output+size)='\0';
   return output;
 }
 
@@ -134,7 +143,7 @@ int main() {
     puts("\nTask three. Cyryllic part of the string that contains the substing "
          "above:");
     char *task3;
-    task3 = srcwithoutrus(pos);
+    task3 = srcwithoutrus(text, pos);
     chk_ptr(task3); //  The task three could probably return a null pointer
     puts(task3);    //  Result of the task 3 function
     putchar('\n');
