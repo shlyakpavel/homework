@@ -58,11 +58,12 @@ void MainWindow::on_goButton_clicked()
         {
             double var = 0;
             for (int j = 0; j < i; j++)
-                var += (data->item(i,j)->text().toInt() * x[j]);
+                var += (data->item(i,j)->text().toDouble() * x[j]);
             for (int j = i + 1; j < n; j++)
-                var += (data->item(i,j)->text().toInt() * p[j]);
-            int acc=data->item(i,n)->text().toInt();
-            x[i] = (acc - var) / data->item(i,i)->text().toInt();
+                var += (data->item(i,j)->text().toDouble() * p[j]);
+            int acc=data->item(i,n)->text().toDouble();
+            x[i] = (acc - var) / data->item(i,i)->text().toDouble();
         }
     } while (!converge(x, p));
+
 }
