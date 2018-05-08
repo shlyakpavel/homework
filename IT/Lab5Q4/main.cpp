@@ -1,6 +1,7 @@
-// This is an open source non-commercial project. Dear PVS-Studio, please check
+// This is an open source non-commercial project. Dear PVS-studentio, please
+// check
 // it.
-// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+// PVS-studentio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 /* Имя файла задает пользователь. Массив баллов B[0:4] содержит данные о
  * результатах сдачи экзаменов, по 10-балльной шкале.
  * Каждое поле структуры занимает в файле одну строку, а массив оценок
@@ -12,8 +13,8 @@
  * удаляет записи о студентах из заданной группы;
  */
 
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 
 typedef unsigned char byte;
 
@@ -26,31 +27,35 @@ using namespace std;
   }
 
 #define SCORE_NUM 5
+#define GROUP_TO_DELETE "BIV182"
+#define NEEDS_AVG_SCORE
 
+// Why is it so bad? Read more about data aligment
 struct person {
   char *familia;
   char *name;
   char *otchestvo;
 };
+
 struct scores {
   byte B[SCORE_NUM];
+#ifdef NEEDS_AVG_SCORE
   float average;
-};
-
-struct student {
-  person fio;
-  char *group;
-  scores uspevaemost;
+#endif
 };
 
 struct element {
   element *next;
   element *prev;
-  student stud;
+  struct {
+    person fio;
+    char *group;
+    scores uspevaemost;
+  } student;
 };
 
 bool nendof(FILE *fl) {
-  int addr = ftell(fl);
+  size_t addr = ftell(fl);
   bool res = (fgetc(fl) != EOF) && (fgetc(fl) != EOF);
   fseek(fl, addr, 0);
   return res;
@@ -72,19 +77,25 @@ element *input() {
     current = new element();
     current->prev = prev;
     // Read fio
-    fscanf(fl, "%ms", &current->stud.fio.familia);
-    fscanf(fl, "%ms", &current->stud.fio.name);
-    fscanf(fl, "%ms", &current->stud.fio.otchestvo);
+    fscanf(fl, "%ms", &current->student.fio.familia);
+    fscanf(fl, "%ms", &current->student.fio.name);
+    fscanf(fl, "%ms", &current->student.fio.otchestvo);
     // Read group (most important in my case)
-    fscanf(fl, "%ms", &current->stud.group);
+    fscanf(fl, "%ms", &current->student.group);
     // Read scores and sum them up
+    #ifdef NEEDS_AVG_SCORE
     float sum = 0;
+    #endif
     for (byte i = 0; i < SCORE_NUM; i++) {
-      fscanf(fl, "%hhu", &current->stud.uspevaemost.B[i]);
-      sum += current->stud.uspevaemost.B[i];
+      fscanf(fl, "%hhu", &current->student.uspevaemost.B[i]);
+      #ifdef NEEDS_AVG_SCORE
+      sum += current->student.uspevaemost.B[i];
+      #endif
     }
+    #ifdef NEEDS_AVG_SCORE
     // Find an average(mean) value
-    current->stud.uspevaemost.average = sum / SCORE_NUM;
+    current->student.uspevaemost.average = sum / SCORE_NUM;
+    #endif
     // Set the next element for the previous one
     if (prev)
       prev->next = current;
@@ -95,10 +106,10 @@ element *input() {
 }
 
 void element_destructor(element *el) {
-  delete (el->stud.fio.familia);
-  delete (el->stud.fio.name);
-  delete (el->stud.fio.otchestvo);
-  delete (el->stud.group);
+  delete (el->student.fio.familia);
+  delete (el->student.fio.name);
+  delete (el->student.fio.otchestvo);
+  delete (el->student.group);
   delete (el);
 }
 
@@ -111,12 +122,12 @@ void output(element *head) {
     ;
   // Print elements one by one
   for (element *cur = first; cur; cur = cur->next) {
-    fprintf(fl, "%s\n", cur->stud.fio.familia);
-    fprintf(fl, "%s\n", cur->stud.fio.name);
-    fprintf(fl, "%s\n", cur->stud.fio.otchestvo);
-    fprintf(fl, "%s\n", cur->stud.group);
+    fprintf(fl, "%s\n", cur->student.fio.familia);
+    fprintf(fl, "%s\n", cur->student.fio.name);
+    fprintf(fl, "%s\n", cur->student.fio.otchestvo);
+    fprintf(fl, "%s\n", cur->student.group);
     for (byte i = 0; i < SCORE_NUM; i++)
-      fprintf(fl, " %hhu", cur->stud.uspevaemost.B[i]);
+      fprintf(fl, " %hhu", cur->student.uspevaemost.B[i]);
     fputc('\n', fl);
   };
   fclose(fl);
@@ -127,8 +138,9 @@ byte process(element *&head) {
   byte elements = 0;
   element *el = head;
   while (el) {
-    if (!strcmp(el->stud.group, "BIV182")) {
-      // delete element
+    if (strcmp(el->student.group, GROUP_TO_DELETE)) {
+      el = el->prev;
+    } else { // delete element
       if (el->prev)
         el->prev->next = el->next; // Previous element to point on the next one
       if (el->next)
@@ -140,8 +152,7 @@ byte process(element *&head) {
       el = el->prev;
       element_destructor(tmp_ptr);
       elements++;
-    } else
-      el = el->prev;
+    }
   }
   return elements;
 }
