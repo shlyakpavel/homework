@@ -8,7 +8,7 @@ These include:
 - Math, Low, Physics will be also available in the future. Don't ask me when.
 
 These do not include:
-- My own projects(some of them can be found in external repositories)
+- My personal projects(some of them can be found in external repositories)
 - My course works (available in *appropriate* repos)
 
 ## Attention!
