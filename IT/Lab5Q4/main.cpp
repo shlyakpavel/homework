@@ -1,7 +1,6 @@
-// This is an open source non-commercial project. Dear PVS-studentio, please
-// check
-// it.
-// PVS-studentio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+
 /* Имя файла задает пользователь. Массив баллов B[0:4] содержит данные о
  * результатах сдачи экзаменов, по 10-балльной шкале.
  * Каждое поле структуры занимает в файле одну строку, а массив оценок
@@ -15,8 +14,6 @@
 
 #include <cstdio>
 #include <cstring>
-
-typedef unsigned char byte;
 
 using namespace std;
 
@@ -38,7 +35,7 @@ struct person {
 };
 
 struct scores {
-  byte B[SCORE_NUM];
+  unsigned char B[SCORE_NUM];
 #ifdef NEEDS_AVG_SCORE
   float average;
 #endif
@@ -86,7 +83,7 @@ element *input() {
     #ifdef NEEDS_AVG_SCORE
     float sum = 0;
     #endif
-    for (byte i = 0; i < SCORE_NUM; i++) {
+    for (unsigned char i = 0; i < SCORE_NUM; i++) {
       fscanf(fl, "%hhu", &current->student.uspevaemost.B[i]);
       #ifdef NEEDS_AVG_SCORE
       sum += current->student.uspevaemost.B[i];
@@ -126,16 +123,16 @@ void output(element *head) {
     fprintf(fl, "%s\n", cur->student.fio.name);
     fprintf(fl, "%s\n", cur->student.fio.otchestvo);
     fprintf(fl, "%s\n", cur->student.group);
-    for (byte i = 0; i < SCORE_NUM; i++)
+    for (unsigned char i = 0; i < SCORE_NUM; i++)
       fprintf(fl, " %hhu", cur->student.uspevaemost.B[i]);
     fputc('\n', fl);
   };
   fclose(fl);
 }
 
-byte process(element *&head) {
+unsigned char process(element *&head) {
   // The function returns amount of deleted elements (not more then 255)
-  byte elements = 0;
+  unsigned char elements = 0;
   element *el = head;
   while (el) {
     if (strcmp(el->student.group, GROUP_TO_DELETE)) {
