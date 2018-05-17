@@ -1,0 +1,15 @@
+Shlyak
+Pavel
+Vyacheslavovich
+BIV182
+1 2 3 4 5
+Shlyak
+Olga
+Nikolaenvna
+BIV181
+9 8 7 6 5
+Shlyak
+Irina
+Vyacheslavovna
+BIV182
+0 1 0 0 4
