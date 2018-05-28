@@ -23,7 +23,7 @@ void setright(node *p, int x) { p->right = newn(x); }
 node *form() {
     int n;
     node *der = NULL, *next, *tek;
-    puts("Input integer numbers\nletter means that input us over");
+    puts("Input integer numbers\nletter means that input is over");
     if (scanf("%d", &n) == 1) {
         der = newn(n);
         while (scanf("%d", &n) == 1) {
@@ -69,7 +69,7 @@ void DelLeaf(node **der) {
 
 int main() {
     node *der;
-    puts("Now we'll make tree");
+    puts("Now we'll make a tree");
     der = form();
     if (!der)
         puts("Tree is empty");
