@@ -85,11 +85,11 @@ int avg(node *der)
 }
 #endif
 
-void udalx(int x,node **ader)
+bool udalx(int x,node **ader)
 {
     node * pointer = *ader;
     node * parent  = NULL;
-
+    bool flag = false;
        while (pointer != NULL && pointer->info != x)
        {
            parent = pointer;
@@ -145,7 +145,9 @@ void udalx(int x,node **ader)
 
            //cout << removed << " deleted" << endl;
            delete removed;
+           flag = true;
        }
+       return flag;
 }
 
 int main() {
@@ -156,7 +158,12 @@ int main() {
         puts("Tree is empty");
     else
         print_tree(der, 0);
-    udalx(5,&der);
+    int counter = 0;
+    for (bool res = true; res; res=udalx(5,&der), counter++);
+    if (counter == 1){
+        puts("None deleted");
+        return 0;
+    }
     if(der){
         puts("The tree after cleanup:");
         print_tree(der, 0);
