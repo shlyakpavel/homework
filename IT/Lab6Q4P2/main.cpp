@@ -67,6 +67,23 @@ void DelLeaf(node **der) {
     DelLeaf(&((*der)->right));
 }
 
+int avg(node *der)
+{
+    static int number_elements = 0;
+    static double sum = 0;
+    if(!der)
+        return sum/number_elements;
+    else
+    {
+        number_elements++;
+        sum+= der->info;
+        avg(der->left);
+        //можно опустить
+        avg(der->right);
+        return sum/number_elements;
+    }
+}
+
 int main() {
     node *der;
     puts("Now we'll make a tree");
@@ -82,4 +99,8 @@ int main() {
     }
     else
         puts("The tree is now empty");
+    // Begin extra task
+    //int a = avg(der);
+    //printf("%d",a);
+    // End extra task
 }
