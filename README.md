@@ -10,6 +10,7 @@ These include:
 These do not include:
 - My personal projects(some of them can be found in external repositories)
 - My course works (available in *appropriate* repos)
+- Mathematical practice (can be found in a separate repo: https://github.com/shlyakpavel/math_practice)
 
 ## Attention!
 Do **NOT** reupload anything of these without my permission! It is potentially **dangerous** as all the assignments are *processed* with plagiarism checker.
